@@ -40,7 +40,7 @@ validate_model(model, test_data = data_clean)
 generate_report(data_clean, "port_report.html")
 ```
 
-# Advantages & Key Takeaways
+# Advantages & Learned Points
 
 - **End-to-End Pipeline**: Simplifies the entire workflow from raw CSV import (`load_port_data()`) to interactive scenario simulation (`simulate_scenario()`).
 - **Tidy Data Principles**: Employs **dplyr** and **tidyr** with the `%>%` operator for readable, reproducible data transformations.
