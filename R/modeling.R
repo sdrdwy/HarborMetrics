@@ -13,9 +13,9 @@ library(readr)
 #' with exogenous variables, performing train-test split and returning detailed
 #' model diagnostics and predictions.
 #'
-#' @param target A numeric vector (n×1) of the target time series to forecast.
+#' @param target A numeric vector (nx1) of the target time series to forecast.
 #'   Should be a univariate time series. Missing values are not allowed.
-#' @param exog A numeric matrix (n×m) of exogenous variables. Must have the same
+#' @param exog A numeric matrix (nxm) of exogenous variables. Must have the same
 #'   number of rows as the target vector. Factors should be converted to dummy variables.
 #'
 #' @return A list containing:
@@ -69,7 +69,7 @@ library(readr)
 fit_arima_forecast <- function(target, exog) {
   # param validatation
   if (length(target) != nrow(exog)) {
-    stop("目标变量与外生变量行数不一致") 
+    stop("miss match in n rows of target and exogs") 
   }
   
   # create time series object
@@ -105,7 +105,7 @@ fit_arima_forecast <- function(target, exog) {
   
   # extract model parameters
   model_params <- list(
-    order = arima_model$arma[c(1, 6, 2)],  # 提取(p, d, q)
+    order = arima_model$arma[c(1, 6, 2)],  # extract(p, d, q)
     coefficients = coefficients(arima_model),
     aicc = arima_model$aicc
   )
@@ -121,18 +121,3 @@ fit_arima_forecast <- function(target, exog) {
   ))
 }
 
-
-# # Usage --------------------------------------------------
-# port_data = load_port_data("data/NewYork_dailydata.csv")
-# print(length(port_data$date))
-
-# port_data = clean_port_data(port_data)
-# print(length(port_data$date))
-
-# target_col = as.vector(port_data$berth_duration)
-# exog_cols <- as.matrix(port_data %>% select(net_contribution, moor_duration, DailyAverageWindSpeed, berth_num))  # 外生变量（载重量和天气）
-
-# # 调用函数
-# result <- fit_arima_forecast(target_col, exog_cols)
-# # 调用新函数进行分析
-# analyze_arima_result(result)    

@@ -4,11 +4,13 @@ Version: 0.0.0.9000
 Author: Yuxuan Hu <121090194@link.cuhk.edu.cn>, Junyi He <121090163@link.cuhk.edu.cn>, Ruixiang Mei <121090416@link.cuhk.edu.cn>
 Maintainer: Yuxuan Hu <121090194@link.cuhk.edu.cn>, Junyi He <121090163@link.cuhk.edu.cn>, Ruixiang Mei <121090416@link.cuhk.edu.cn>
 Description: Analyzes and predicts port operational efficiency using weather and historical data. Includes tools for time series forecasting, correlation analysis, and scenario optimization.
-License: use_mit_license()
+License: MIT
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.3.2
 SystemRequirements: pandoc
+VignetteBuilder: knitr
+LazyData: true
 Imports:
   dplyr,
   tidyr,
@@ -19,5 +21,6 @@ Imports:
   forecast,
   testthat,
   knitr,
-  rmarkdown
-
+  rmarkdown,
+  tibble
+Config/testthat/edition: 3

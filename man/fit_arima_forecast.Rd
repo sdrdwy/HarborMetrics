@@ -7,10 +7,10 @@
 fit_arima_forecast(target, exog)
 }
 \arguments{
-\item{target}{A numeric vector (n×1) of the target time series to forecast.
+\item{target}{A numeric vector (nx1) of the target time series to forecast.
 Should be a univariate time series. Missing values are not allowed.}
 
-\item{exog}{A numeric matrix (n×m) of exogenous variables. Must have the same
+\item{exog}{A numeric matrix (nxm) of exogenous variables. Must have the same
 number of rows as the target vector. Factors should be converted to dummy variables.}
 }
 \value{

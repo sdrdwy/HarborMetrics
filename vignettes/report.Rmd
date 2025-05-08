@@ -1,0 +1,8 @@
+---
+title: "NewYork Data Analysis"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{NewYork Data Analysis}  
+  %\VignetteEngine{knitr::rmarkdown}          
+  %\VignetteEncoding{UTF-8}                   
+---
