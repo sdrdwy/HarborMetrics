@@ -67,17 +67,17 @@ fit_arima_forecast <- function(target, exog) {
 }
 
 
-# 示例用法 --------------------------------------------------
-port_data = load_port_data("data\\NewYork_dailydata.csv")
-print(length(port_data$date))
+# # Usage --------------------------------------------------
+# port_data = load_port_data("data/NewYork_dailydata.csv")
+# print(length(port_data$date))
 
-port_data = clean_port_data(port_data)
-print(length(port_data$date))
+# port_data = clean_port_data(port_data)
+# print(length(port_data$date))
 
-target_col = as.vector(port_data$berth_duration)
-exog_cols <- as.matrix(port_data %>% select(net_contribution, moor_duration, DailyAverageWindSpeed, berth_num))  # 外生变量（载重量和天气）
+# target_col = as.vector(port_data$berth_duration)
+# exog_cols <- as.matrix(port_data %>% select(net_contribution, moor_duration, DailyAverageWindSpeed, berth_num))  # 外生变量（载重量和天气）
 
-# 调用函数
-result <- fit_arima_forecast(target_col, exog_cols)
-# 调用新函数进行分析
-analyze_arima_result(result)    
+# # 调用函数
+# result <- fit_arima_forecast(target_col, exog_cols)
+# # 调用新函数进行分析
+# analyze_arima_result(result)    
