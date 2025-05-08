@@ -28,7 +28,7 @@ clean_port_data <- function(data) {
 
 # port_data = load_port_data("data\\NewYork_dailydata.csv")
 # print(length(port_data$date))
-# clean_port_data(port_data)
+# port_data = clean_port_data(port_data)
 
 # print(length(port_data$date))
 
