@@ -1,7 +1,9 @@
 library(dplyr)
 library(tidyr)
 
-# Reads NewYork_dailydata.csv and converts dates.
+#' load and preprocess port data
+#' @param path Path to CSV file
+#' @export 
 load_port_data <- function(path){
   if(!file.exists(path)) stop("File not found:", path)
   readr::read_csv(path,show_col_types = FALSE) %>%
@@ -10,7 +12,9 @@ load_port_data <- function(path){
     tibble::as_tibble()
 }
 
-#Handels missing values and outliers
+#' load and clean port data
+#' @param data data loaded usikng load_port_data and wait to be cleaned
+#' @export 
 clean_port_data <- function(data) {
   data %>%
     dplyr::mutate(
