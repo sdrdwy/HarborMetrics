@@ -101,75 +101,16 @@ analyze_arima_result <- function(result) {
 #' generate_report(data, model, "port_analysis.html")
 #' }
 generate_report <- function(data, result, output_file) {
-  # Create temporary Rmd file
-  tmp_rmd <- tempfile(fileext = ".Rmd")
-  
-  # Define report template components
-  template <- c(
-    "---",
-    "title: 'Port Operations Analysis Report'",
-    "output: html_document",
-    "---",
-    "",
-    "```{r setup, include=FALSE}",
-    "knitr::opts_chunk$set(echo = FALSE, warning = FALSE, message = FALSE)",
-    "```",
-    "",
-    "## Data Overview",
-    "### First 6 Rows",
-    "```{r}",
-    "knitr::kable(utils::head(data), caption = 'Sample Data')",
-    "```",
-    "",
-    "### Structure Summary",
-    "```{r}",
-    "str(data)",
-    "```",
-    "",
-    "## Model Diagnostics",
-    "### ARIMA Parameters",
-    "- Order: `r paste(result$parameters$order, collapse = '-')`",
-    "- AICc: `r round(result$parameters$aicc, 1)`",
-    "",
-    "### Model Coefficients",
-    "```{r}",
-    "knitr::kable(as.data.frame(t(result$parameters$coefficients)), ",
-    "             caption = 'Model Coefficients')",
-    "```",
-    "",
-    "## Performance Metrics",
-    "```{r}",
-    "train_r2 <- 1 - sum((result$actual_train - result$train_predictions)^2) /",
-    "  sum((result$actual_train - mean(result$actual_train))^2)",
-    "test_r2 <- 1 - sum((result$actual_test - result$test_predictions)^2) /",
-    "  sum((result$actual_test - mean(result$actual_test))^2)",
-    "train_rmse <- sqrt(mean((result$actual_train - result$train_predictions)^2))",
-    "test_rmse <- sqrt(mean((result$actual_test - result$test_predictions)^2))",
-    "```",
-    "",
-    "### Training Set",
-    "- R-squared: `r round(train_r2, 2)`",
-    "- RMSE: `r round(train_rmse, 2)` hours",
-    "",
-    "### Test Set",
-    "- R-squared: `r round(test_r2, 2)`",
-    "- RMSE: `r round(test_rmse, 2)` hours",
-    "",
-    "## Visual Analysis",
-    "```{r, fig.width=10, fig.height=6}",
-    "HarborMetrics:::visualize_result(result)",
-    "```"
-  )
-  
-  # Write template to temporary file
-  writeLines(template, tmp_rmd)
   
   # Render report
+  output_dir = getwd()
+  template_path = system.file("report_template.Rmd", package = "HarborMetrics")
   rmarkdown::render(
-    input = tmp_rmd,
+    input = template_path,
     output_file = output_file,
+    output_dir = output_dir,
     envir = new.env(parent = globalenv()),
-    params = list(data = data, result = result)
+    params = list(port_data = data, result = result)
   )
   
   # Cleanup temporary file
