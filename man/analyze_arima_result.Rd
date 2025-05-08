@@ -2,13 +2,58 @@
 % Please edit documentation in R/reporting.R
 \name{analyze_arima_result}
 \alias{analyze_arima_result}
-\title{Fit arima forecast model}
+\title{Analyze ARIMA Model Forecasting Results}
 \usage{
 analyze_arima_result(result)
 }
 \arguments{
-\item{result}{result to be analyzed}
+\item{result}{A list object returned by \code{fit_arima_forecast} containing:
+\itemize{
+\item parameters - Model parameters including ARIMA order and coefficients
+\item actual_train - Actual values from training set
+\item train_predictions - Predicted values for training set
+\item actual_test - Actual values from test set
+\item test_predictions - Predicted values for test set
+}}
+}
+\value{
+Invisibly returns a list of performance metrics. Main outputs are
+printed to console including:
+\itemize{
+\item Model parameters (ARIMA order and coefficients)
+\item R-squared for both training and test sets
+\item RMSE (Root Mean Squared Error) for both sets
+}
 }
 \description{
-Fit arima forecast model
+Generates diagnostic metrics and model insights for ARIMA forecasting results
+produced by \code{\link{fit_arima_forecast}}.
+}
+\details{
+Calculates key performance indicators:
+\itemize{
+\item R-squared (coefficient of determination) measuring variance explained
+\item RMSE (Root Mean Squared Error) in original units
+\item Model parameter diagnostics (ARIMA order and coefficients)
+}
+}
+\examples{
+\dontrun{
+# After fitting model with fit_arima_forecast()
+result <- fit_arima_forecast(target, exog)
+analyze_arima_result(result)
+
+# Typical console output:
+# ARIMA(1,1,1) Coefficients:
+#         ar1     ma1  net_contribution
+#       0.812  -0.623            0.0041
+# 
+# training set R square: 0.87
+# Training set RMSE: 1.23 hours
+# Test set R square: 0.82
+# Test set RMSE: 1.45 hours
+}
+}
+\seealso{
+\code{\link{fit_arima_forecast}} for generating the analysis input
 }
