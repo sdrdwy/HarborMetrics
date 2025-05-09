@@ -11,7 +11,10 @@ vignette: >
 
 # Introduction
 
-Efficient port operations are critical for global trade, yet weather events and operational variability can result in significant delays. **HarborMetrics** offers an end-to-end solution for analyzing and forecasting daily port efficiency metrics—such as ship waiting time, berth duration, and cargo throughput—by seamlessly integrating weather features with historical operational data. Users can quickly build predictive models, quantify the impact of weather, and simulate multiple “what-if” scenarios to support data-driven decision-making.
+Efficient port operations are critical for global trade, yet weather events and operational variability can result in significant delays.   
+**HarborMetrics** offers an end-to-end solution for analyzing and forecasting daily port efficiency metrics—such as ship waiting time, berth duration, and cargo throughput—by seamlessly integrating weather features with historical operational data.  
+Users can quickly build predictive models, quantify the impact of weather, and simulate multiple “what-if” scenarios to support data-driven decision-making.  
+Our source code can be found at [here](https://github.com/sdrdwy/HarborMetrics)
 
 # Demonstration
 
@@ -23,10 +26,10 @@ library(dplyr)
 library(tidyr)
 
 # Set RStudio’s bundled Pandoc path to ensure rmarkdown::pandoc_available() returns TRUE
-Sys.setenv(RSTUDIO_PANDOC = "C:/Program Files/RStudio/resources/app/bin/quarto/bin/tools")
+Sys.setenv(RSTUDIO_PANDOC = "/opt/homebrew/bin")
 
 # Load and preprocess data
-port_data <- load_port_data("C:/Users/32990/Downloads/HarborMetrics_hyx-main/HarborMetrics_hyx/data/NewYork_dailydata.csv")
+port_data <- load_port_data("NewYork_dailydata.csv")
 port_data <- clean_port_data(port_data)
 
 # Prepare target and exogenous variables
@@ -50,21 +53,13 @@ generate_report(port_data, result, "./output.html")
 - **Tidy Data Workflow**: Utilizes **dplyr** and **tidyr** with the `%>%` pipe for transparent, reproducible data transformations.
 - **Robust Date Handling**: Uses **lubridate** for parsing and manipulating date-time fields, essential for time series modeling.
 - **Time Series Forecasting**: Integrates the **forecast** package to support ARIMA and exponential smoothing models for reliable predictions.
-- **Constraint-Based Optimization**: Implements linear programming in `optimize_schedule()` to allocate cargo under operational constraints.
-- **Interactive Visualizations**: Combines **ggplot2** for static charts and **plotly** for dynamic, interactive plots.
+- **Interactive Visualizations**: Utilizes **ggplot2** for static charts .
 - **Reproducible Reporting**: Leverages **rmarkdown** to automate report generation in HTML or PDF formats.
-- **Unit Testing**: Employs **testthat** to verify model accuracy (e.g., RMSE < 1 hour) and assure functional reliability.
+- **Unit Testing**: Employs **testthat** to verify model accuracy and assure functional reliability.
 - **Modular Package Design**: Uses **usethis** to scaffold the project, manage dependencies, and facilitate collaboration.
 - **Extensibility**: Offers clear function interfaces for customizing models, features, and evaluation metrics.
-- **Performance Benchmarking**: Includes tools to benchmark performance across different data sizes and model types.
-- **Standardized Documentation**: Adopts **roxygen2** for inline documentation and **pkgdown** for generating a documentation website.
-- **Cross-Platform Compatibility**: Supports Windows, macOS, and Linux environments for flexible deployment.
-- **Scenario Analysis**: Enables comparison of multiple hypothetical weather scenarios via `simulate_scenario()` for risk assessment.
-- **Shiny Integration**: Provides a Shiny app template for building interactive dashboards.
-- **Batch Processing**: Supports parallel and batch execution for large-scale datasets.
+- **Standardized Documentation**: Adopts **roxygen2** for inline documentation.
 - **Sample Data & Templates**: Includes example datasets and script templates to accelerate onboarding.
 - **Continuous Integration**: Offers pre-configured GitHub Actions workflows for automated testing and documentation.
-- **Error Handling & Validation**: Implements comprehensive input validation and error capture to reduce runtime failures.
-- **Open-Source Governance**: Maintained under the MIT license, with community contribution guidelines and issue tracking.
 
 > This vignette illustrates core course concepts—modular package development, advanced data wrangling, time series modeling, optimization algorithms, interactive visualization, and automated reporting—highlighting HarborMetrics’s design philosophy and capabilities.

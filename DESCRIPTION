@@ -1,6 +1,6 @@
 Package: HarborMetrics
 Title: Predictive Analytics for Port Operations
-Version: 0.0.0.9000
+Version: 0.1.0.0000
 Author: Yuxuan Hu <121090194@link.cuhk.edu.cn>, Junyi He <121090163@link.cuhk.edu.cn>, Ruixiang Mei <121090416@link.cuhk.edu.cn>
 Maintainer: Yuxuan Hu <121090194@link.cuhk.edu.cn>, Junyi He <121090163@link.cuhk.edu.cn>, Ruixiang Mei <121090416@link.cuhk.edu.cn>
 Description: Analyzes and predicts port operational efficiency using weather and historical data. Includes tools for time series forecasting, correlation analysis, and scenario optimization.
